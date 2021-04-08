@@ -1,0 +1,103 @@
+<!DOCTPYE html>
+<html lang="en">
+<head>
+	<meta charset="utf=8">
+	<title></title>
+	<style>
+		div{width:100px; height:100px; border:1px solid black;}
+	</style>
+		
+	<script>
+	/*
+	//1. 字符串逆序
+	function reverseStr(str){
+		var arr = str.split(" ");// Wlecome,to,Beijing   //"" W,l,e,c,o,m,e, ,t,o, ,B,e,i,j,i,n,g
+		//alert(arr);
+		arr.reverse();
+		return arr.join(" ");//Beijing to Wlecome     //g n i j i e B   o t   e m o c e l W
+	}
+	alert(reverseStr("Wlecome to Beijing")); 
+	
+//???	//2.对称数组
+	function symmetryArr(arr){
+		var newArr = arr.concat();    //生成新数组，concat还有一个含义为拷贝原数组，生成新数组
+		console.log(newArr);
+		for(var i = arr.length - 1; i >= 0; i--){
+			newArr.push(arr[i]);   //把原数组倒序插入到新数组。
+		}
+		return newArr;
+	}
+	alert(symmetryArr("one","two","three"));
+	
+	//3.当前面一个字符是字母，后面一个字符是非字母的时候，这就是一个单词
+	
+	function countOfWord(str){
+		var count = 0;
+		for(var i = 0; i < str.length; i++){
+			if(isABC(str[i]) && !isABC(str[i + 1])){
+				count++;
+			}
+		}
+		return count;
+	}
+	alert(countOfWord("Yes,she is @ my % love."));    //5  字符串长度
+	
+	function isABC(charStr){
+		if(charStr >= "a" && charStr >= "z" || charStr >= "A" && charStr >= "Z"){
+			return true;
+		}else{
+			return false;
+		}
+	}
+	
+	
+	
+	//4. "abcabcabc "    "abc"
+	function countOfStr(supStr,subStr){
+		var arr = supStr.split(subStr);
+		return arr.length - 1;
+	}
+	alert(countOfStr("abcabcabc","abc"));  // 3
+	*/
+	//5.判断是否是正确的邮箱
+	   //用户名只能是数字字母下划线，域名为@100phone.com
+	function isEmail(email){
+		//1.查找@符号的位置
+		var index = email.indexOf("@");
+		if(index == -1){
+			return false;
+		}else{
+			var endStr = email.substring(index);
+			if(endStr != "@100phone.com"){
+				return false;
+			}else{
+				//2.判断用户是否符合数字字母下划线，可单独封装一个函数
+				var username = email.substring(0,index);
+				var isYes = true;
+				for(var i = 0; i < username.length; i++){
+					if(!isDEF(username[i])){
+						isYes = false;
+						break;
+					}
+				}
+				return isYes;
+			}
+		}
+	}
+	alert(isEmail("1mail@100phone.com"));
+	
+	function isDEF(charStr){
+		if(charStr >= "a" && charStr <= "z" || charStr >= "A" && charStr <= "Z" || charStr >= "0" && charStr <= "9" ||  charStr == "_"){
+			return true;
+		}else{
+			return false;
+		}
+	}
+	
+	
+	</script>
+</head>
+<body>
+	 
+</body>
+<html>

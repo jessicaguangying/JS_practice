@@ -1,0 +1,78 @@
+<!DOCTPYE html>
+<html lang="en">
+<head>
+	<meta charset="utf=8">
+	<title></title>
+	<style>
+		div{width:100px; height:100px; border:1px solid black;}
+	</style>
+</head>
+<body>
+	<script>
+	/*
+	//1. 后移一位
+	function removeOne(arr){
+		var temp = arr[arr.length - 1];
+		for(i = arr.length - 1; i >= 0; i--){
+				arr[i] = arr[i - 1];
+		}
+		arr[0] = temp;
+		return arr;
+	}
+	alert(removeOne([1,2,3,4]));   4,1,2,3
+	
+	//2.后移一位
+	function removeTwo(arr){
+		var pre = arr[0];
+		console.log(pre);  //1
+		for(var i = 1; i < arr.length; i++){
+			cur = arr[i];    //2
+			arr[i] = pre;    //1
+			pre = cur;       //2
+		}
+		arr[0] = pre;       //2
+		return arr;
+	}
+	alert(removeTwo([1,2,3,4]));    // 4,1,2,3 
+	
+	var arr = [1,2,3,4];
+	for(i = 1; i < arr.length; i++){
+		var temp = arr[i];
+			arr[i] = arr[0];
+			arr[0] = temp;
+	}
+	alert(arr);        // 4,1,2,3 
+	*/
+	
+	function maxGap(num){
+			var arr = num.split(""); 
+			console.log(arr);
+			var start = false;//有没有碰到过“1”
+			var sum = 0;
+			var max = 0;
+			for(i = arr.length - 1; i >= 0; i--){
+				if(arr[i] == "1"){//碰到“1”
+				    if(start == true) {//已经碰到过“1”
+					    if(max < sum){//更新max
+						    max = sum;
+						}
+						sum = 0;
+					} else {//第一次
+					    start = true;
+					}
+				} else {// arr[i] is "0"
+				    if(start == true) {//之前碰到过“1”
+					    sum++;//0的长度累加
+					}
+				}
+			}
+			console.log('0的个数' + max);
+		}
+		maxGap("111000110000111100000");
+			
+	
+	
+			
+	</script>
+</body>
+<html>

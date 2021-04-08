@@ -1,0 +1,994 @@
+<!DOCTPYE html>
+<html lang="en">
+<head>
+	<meta charset="utf=8">
+	<title></title>
+	<style>
+		div{width:100px; height:100px; border:1px solid black;}
+	</style>
+		
+	<script>
+	//1. 2数之和，返回2数下标，前提此数组应为有序排序
+	/*
+	var towSum = function(nums,target){
+		for(var i = 0; i < nums.length; i++){
+			for(var j = i + 1; j < nums.length; j++){
+				if(nums[i] + nums[j] === target){
+					return [i,j];
+				}
+			}
+		}
+	}
+	var nums = [2,4,5,8,9];
+	var target = 10;
+	alert(towSum(nums,target));
+	
+	function towSum(nums,target){
+		for(var i = 0; i < nums.length; i++){
+			for(var j = i + 1; j < nums.length; j++){
+				if(nums[i] + nums[j] === target){
+					return [i,j];
+				}
+			}
+		}
+	}
+	var nums = [2,4,5,8,9];
+	var target = 10;
+	alert(towSum(nums,target));
+	
+	
+	var twoSum = function(nums,target){
+		if(nums =='' || nums.length == 0){
+			return;
+		}
+		var left = 0;
+		var right = nums.length - 1;
+		while(true){
+			if(nums[left] + nums[right] > target){
+				right--;
+			}
+			if(nums[left] + nums[right] < target){
+				left++;
+			}
+			if(nums[left] + nums[right] == target){
+				return [left,right];
+			}
+		}
+	};
+	var nums = [2,4,5,8,9];
+	var target = 10;
+	alert(twoSum(nums,target));   //0,3
+	*//*
+	function twoSum(nums,target){
+		var d = {};
+		for(var i = 0; i < nums.length; i++){
+			var index = nums.indexOf(target - nums[i]);
+			if(index !== -1 && index !== i){
+				return [i,index]
+			}
+		}
+	}
+	var nums = [2,4,5,8,9];
+	var target = 10;
+	alert(twoSum(nums,target)); //0,3
+	
+	
+	
+	//2.整数反转
+	
+	var reverse = function(x){
+		var x = x.toString();
+		var arr = x.split("");
+		if(arr[0] != '-'){
+			var y = Number(arr.reverse().join(''));
+			if(y >= (Math.pow(2,31)) || y <= (Math.pow(2,-31))){
+				return 0;
+			}else{
+				return y;
+			}
+		}else if(arr[0] == '-'){
+			delete(arr[0]);
+			var y = Number(arr.reverse().join(''));
+			if(y >= (Math.pow(2,31)) || y <= (Math.pow(2,-31))){
+				return 0;
+			}else{
+				return '-' + y;
+			}
+		}
+	};
+	var x = [123];
+	alert(reverse(x));  //321
+	
+	
+	var reverse = function(x){
+		var x = x.toString();
+		var arr = x.split("");
+		var y = Number(arr.reverse().join(''));
+			if(y >= (Math.pow(2,31)) || y <= (Math.pow(2,-31))){
+				return 0;
+			}else{
+				if(arr[0] == '-'){
+					return "-" + y;
+				}else{
+					return y;
+				}
+				
+			}
+	};
+	var x = [123];
+	alert(reverse(x));  //321
+	
+	
+	
+	
+//3.删除有序数组中的重复项  ????
+	
+	var removeDuplicates = function(nums){
+		var i = 0;
+		var length = nums.length;
+		if(length == 0){   //0,null
+			return 0;
+		}
+		for(j = 1; j < length; j++){
+			if(nums[i] != nums[j]){
+				nums[++i] = nums[j];  
+			}
+		}
+		return i + 1;
+	};
+	var nums = [1,4,1,4];
+	alert(removeDuplicates(nums));    
+	
+	
+	
+	
+	//4.只出现一次的元素
+	var singleNumer = function(nums){
+		var res = 0;
+		for(var i = 0; i < nums.length;i++){
+			res = res^nums[i]
+			console.log(res);
+		}
+		return res;
+	}
+	var nums = [1,1,2,2,7];
+	alert(singleNumer(nums));    //7
+	
+	
+	var singleNumer = function(nums){
+		for(var i = 0; i < nums.length;i++){
+			if(nums.indexOf(nums[i]) == nums.lastIndexOf(nums[i])){
+			console.log(nums.indexOf(nums[i]));
+			console.log(nums.lastIndexOf(nums[i]));
+				return nums[i];
+			}
+		}
+	}
+	var nums = [1,1,2,3,3];
+	alert(singleNumer(nums));   //7
+	
+	var singleNumer = function(nums){
+		var newNums =  nums.sort();
+		console.log(newNums);
+		for(var i = 0; i < newNums.length;i++){
+			if(newNums.indexOf(newNums[i]) == newNums.lastIndexOf(newNums[i])){
+			console.log(newNums.indexOf(newNums[i]));
+			console.log(newNums.lastIndexOf(newNums[i]));
+				return newNums[i];
+			}
+		}
+	}
+	var nums = [1,2,4,1,2];
+	alert(singleNumer(nums)); 
+	
+	var arr = [1,2,4,1,2,7];
+	//alert(arr.indexOf(arr[0]));     //0,1,2,0,1,
+	//alert(arr.lastIndexOf(arr[0])); //3,4,2,3,4,
+	
+	alert(0^arr[0])  //1    0 1  +
+	alert(1^arr[1]) //3     1 2  +
+	alert(3^arr[2]) //7     3  4  +
+	alert(7^arr[3]) //6     7  1  -
+	alert(6^arr[4]) //4     6  2  -
+	alert(4^arr[5]) //3     4  7  
+	
+	*/	/*
+	var singleNumer = function(nums){     
+		//var nums = nums.sort();
+		nums.sort((a,b) => {return a-b});   //a-b 顺序  b-a 逆序
+		console.log(nums);   //1,1,2,7,7
+		for(var i = 0; i < nums.length;i++){
+			if(nums[i] != nums[i - 1] && nums[i] != nums[i + 1]){
+				return nums[i];
+			}
+		}
+		return nums[i];
+	}
+	var nums = [1,1,7,2,7];    //2
+	console.log(singleNumer(nums)); 
+	
+	
+	
+	var nums = [1,1,2,7,7];
+	if(nums[1] != nums[1 - 1] && nums[1] != nums[1 + 1]){
+		console.log(nums[1]);
+	}else{
+		console.log(true);
+	}
+
+	
+	
+	//5. 移除元素
+	function removeElement(nums,val){
+		var res = [];
+		console.log(nums);
+		for(var i = 0; i < nums.length; i++){
+			if(nums[i] != val){
+				res.push(nums[i]);
+			}
+		}
+		return res;
+	}
+	console.log(removeElement([1,7,2,7],7)); 
+	
+	
+	
+	function removeElement(nums,val){
+		if(nums == null || nums.length == 0){
+			return 0;
+		}
+		var res = [];
+		for(var i = 0; i < nums.length; i++){
+			if(nums[i] != val){
+				res.push(nums[i]);
+			}
+		}
+		return res;
+	}
+	console.log(removeElement([1,7,2,7],7)); //1,2
+	*/
+	/*
+	
+	//6.最后一位加1
+	function lastAdd1(digits){
+		var len = digits.length - 1;
+		while(digits[len] === 9){
+			digits[len--] = 0;
+			console.log(digits[len]);
+		}
+		if(len < 0){
+			digits.unshift(1);
+		}else{
+			digits[len]++;
+			console.log(digits[len]);  //6
+		}
+		return digits;
+	}
+	console.log(lastAdd1([4,3,2,5]));     //4,3,2,6
+	*/
+	/*
+	//7.各位相加    
+	function addDigits(num){
+		if(num < 0 && num > 10){
+			return num;
+		}
+		var arr = String(num).split('');
+		var realsum = 0;
+		arr.reduce((sum,cur)=>{
+			realsum = sum + +cur
+			return realsum;
+		},0)
+		return addDigits(realsum);
+	}
+	console.log(addDigits(43))
+	
+	var num = 23;
+	var arr = String(num);   //23
+	var arrN = arr.split('');  //2,3
+	alert(arrN);
+	
+	var num = '23';
+	var arrN = num.split(''); 
+	alert(arrN);   //2,3
+	
+	var num = [23];
+	var arrN = num.split(''); 
+	alert(arrN);   //错误
+	
+	
+	var num = 23;
+	var arrN = num.split(''); 
+	alert(arrN);   //错误
+	
+	
+	var num = '23';
+	var numN = Number(num);
+	alert(numN + 2);   //25
+	alert(num + 2);  //232
+	*/
+	/*
+	2)
+	function addDigits(num){
+		if(num > 0 && num < 10){
+			return num;
+		}
+		num = parseInt(num / 10) + num % 10;
+		return addDigits(num);
+	}
+	console.log(addDigits(43));
+	3)
+	function addDigits(num){
+		if(num == 0){
+			return 0;
+		}
+		if(num % 9 == 0){
+			return 9;
+		}else{
+			return num % 9;
+		}
+	}
+	console.log(addDigits(43));
+	
+	4)
+	function addDigits(num){
+		return (num - 1) % 9 + 1; 
+	}
+	console.log(addDigits(43));
+	
+	
+	//8. 移动零
+	function moveZeroes(nums) {
+		var res = [];
+		for(var j = 0; j < nums.length; j++){
+			if(nums[j] != 0){
+				res.push(nums[j]);
+			}
+			if(nums[j] == 0){
+				res.unshift(nums[j]);
+			}
+		}
+    return res;
+	}
+	console.log(moveZeroes([0,3,2,5,0,4])); //003254
+	
+	
+	function moveZeroes(nums) {
+		var res = [];
+		for(var j = 0; j < nums.length; j++){
+			if(nums[j] != 0){
+				res.unshift(nums[j]);
+			}
+			if(nums[j] == 0){
+				res.push(nums[j]);
+			}
+		}
+    return res;
+	}
+	console.log(moveZeroes([0,3,2,5,0,4])); //452300
+	
+	function moveZeroes(nums) {
+		var newNums = nums.sort(); //002345
+		console.log(newNums);
+		var res = [];
+		for(var j = 0; j < newNums.length; j++){
+			if(newNums[j] != 0){
+				res.unshift(newNums[j]);
+			}
+			if(nums[j] == 0){
+				res.push(newNums[j]);
+			}
+		}
+    return res;
+	}
+	console.log(moveZeroes([0,3,2,5,0,4])); //543200
+	
+	function moveZeroes(nums) {
+		var i = 0;
+		for(var j = i; j < nums.length; j++){
+			if(nums[j] != 0){
+			nums[i++] = nums[j]
+			}
+			if(i - 1 < j){
+				nums[j] = 0;
+			}
+		}
+    return nums;
+	}
+	console.log(moveZeroes([0,3,2,5,0,4]));    //325400
+	
+	function moveZeroes(nums) {
+		for(var i = 0; i < nums.length; i++){
+			for(var j = i; j < nums.length; j++){
+				if(nums[j] != 0){
+				nums[i++] = nums[j]
+				}
+				if(i - 1 < j){
+					nums[j] = 0;
+				}
+			}
+		}
+    return nums;
+	}
+	console.log(moveZeroes([0,3,2,5,0,4])); //325400
+	
+	function moveZeroes(nums) {
+		for(var i = 0; i < nums.length; i++){
+			for(var j = 0; j < nums.length; j++){
+				if(nums[j] != 0){
+					if(j > i){
+						nums[i] = nums[j];
+						nums[j] = 0;
+					}
+					i++;
+				}
+			}
+		}
+    return nums;
+	}
+	console.log(moveZeroes([0,3,2,5,0,4])); //325400
+	
+	
+	//9.字符串反转
+	function reverseString(s){
+		return s.reverse();
+	}
+	console.log(reverseString(['h','i','j','s'])) // s,j,i,h
+	
+	function reverseString(s){
+		var newS = s.reverse();
+		return newS.join('');
+	}
+	console.log(reverseString(['h','i','j','s']))  //sjih
+	
+	//10.元音字符互换
+	function reverseVowels(s){
+		var yuan = ['a','e','i','o','u','A','E','I','O','U'];
+		var arr = s.split('');
+		for(var i = 0; i < arr.length; i++){
+			if(yuan.includes(arr[i])){
+				for(var j = arr.length - 1; j > 0;j--){
+					if(j <= i){
+						return arr.join('');
+					}
+					if(yuan.includes(arr[j])){
+						var a = arr[i];
+						arr[i] = arr[j];
+						arr[j] = a;
+						j--;
+						break;
+ 					}
+				}
+			}
+		}
+		return arr;
+	}
+	console.log(reverseVowels("heello"));   //holle  //hoelle
+	
+	function reverseVowels(s){
+		var temp = 'aeiouAEIOU';
+		var s = s.split('');
+		var i = 0;
+		var j = s.length - 1;
+		while(i < j){
+			while(temp.indexOf(s[i]) == -1 && i < j){
+				i++
+			}
+			while(temp.indexOf(s[j]) == -1 && i < j){
+				j--;
+			}
+			if(i >= j){
+				break;
+			}
+			[s[i],s[j]] = [s[j],s[i]]
+			i++;
+			j--;
+		}
+		return s.join('');
+	}
+	console.log(reverseVowels("heello"));   //hoelle
+	
+	//11.位1的个数
+	
+	function count(num){
+		var len = num.length;
+		var number = 0;
+		for(var i = 0; i < len; i++){
+			console.log(num[i]);
+			if(num[i] == 1){
+				number += 1;
+			}
+		}
+		return number;
+	}
+	console.log(count("0000110100101010"));    //6
+	
+	
+	//12.二进制
+	function addBinary(a,b){
+		var sum = 0;
+		sum = a + b;
+		return sum.toString(2);
+	}
+	console.log(addBinary(5,7));    //1100
+	
+	var a = 1100;
+	var newS = parseInt(a,2);
+	alert(newS);                //12
+	*/
+	/*
+	function addBinary(a,b){
+		var carry = 0;  //进位标记
+		let res = [];
+		aindex = a.length - 1;
+		bindex = b.length - 1;
+		while(aindex >= 0 || bindex >= 0){  //a或b还有位可以相加
+			sum = (+a[aindex] || 0) + (+b[index] || 0) + carry; //a
+			carry = sum >= 2 ? 1 : 0;
+			res.push(sum % 2);
+			aindex--;
+			bindex--;
+		}
+		if(carry){
+			res.push(1);
+		}
+		return res.reverse().join('');
+ 	}
+	console.log(addBinary(11,1));
+	
+	
+	var addBinary = function(a, b) {
+    var carry = 0;
+    var res = [];
+    aindex = a.length -1;
+    bindex = b.length -1;
+    while(aindex >= 0 || bindex >= 0){
+        sum = (+a[aindex] || 0) + (+b[bindex] || 0) + carry;
+        carry = sum >= 2 ? 1 : 0;
+        res.push(sum % 2);
+        aindex--;
+        bindex--;
+    }
+    if(carry){
+        res.push(1);
+    }
+    return res.reverse().join('');
+	};
+	console.log(addBinary(11,1));
+	
+	//13.罗马数字转整数
+	
+	function romanTOInt(s){
+		var res = 0;
+		var flag = 0;
+		for(var i = 0; i < s.length; i++){
+			var c = s.charAt(i);
+			switch(c){
+				case 'I':
+					res += 1;
+					flag = 1;
+					break;
+				case 'V':
+					if(flag == 1){
+						res = res + 5 - 2;
+					}else{
+						res += 5;
+					}
+					flag = 0;
+					break;				
+				case 'X':
+					if(flag == 1){
+						res = res + 10 - 2;
+					}else{
+						res += 10;
+					}
+					flag = 2;
+					break;				
+				case 'L':
+					if(flag == 2){
+						res = res + 50 - 20;
+					}else{
+						res += 50;
+					}
+					flag = 0;
+					break;			
+				case 'C':
+					if(flag == 2){
+						res = res + 100 - 20;
+					}else{
+						res += 100;
+					}
+					flag = 0;
+					break;	
+				case 'D':
+					if(flag == 3){
+						res = res + 500 - 200;
+					}else{
+						res += 500;
+					}
+					flag = 0;
+					break;	
+				case 'M':
+					if(flag == 3){
+						res = res + 1000 - 200;
+					}else{
+						res += 1000;
+					}
+					flag = 0;
+					break;	;
+			}
+		}
+		return res;
+	}
+	console.log(romanTOInt('IVM')); //1004
+	
+	
+	function romanToInt(s){
+		var res = 0;
+		for(var i = 0; i < s.length; i++){
+			if(s[i] == 'M'){
+				res += 1000;
+			}else if(s[i] == 'D'){
+				res += 500;
+			}else if(s[i] == 'L'){
+				res += 50;
+			}else if(s[i] == 'V'){
+				res += 5;
+			}else if(s[i] == 'C' && i + 1 < s.length && (s[i + 1] == 'D' || s[i + 1] == 'M')){
+				res -= 100;
+			}else if(s[i] == 'C'){
+				res += 100;
+			}else if(s[i] == 'X' && i + 1 < s.length && (s[i + 1] == 'L' || s[i + 1] == 'C')){
+				res -= 10;
+			}else if(s[i] == 'X'){
+				res += 10;
+			}else if(s[i] == 'I' && i + 1 < s.length && (s[i + 1] == 'V' || s[i + 1] == 'X')){
+				res -= 1;
+			}else if(s[i] == 'I'){
+				res += 1;
+			}
+		}
+		return res;
+	} 
+	console.log(romanToInt('IVM'));   //1004
+	//I 可以放在 V (5) 和 X (10) 的左边，来表示 4 和 9。
+	//X 可以放在 L (50) 和 C (100) 的左边，来表示 40 和 90。 
+    //C 可以放在 D (500) 和 M (1000) 的左边，来表示 400 和 900。
+
+	//14.两数相加
+	var a = [3,5,2,4];
+	var b = [1,2,3,3];
+	var newA1 = a.join('');
+	var newA2 = b.join('');
+	var newAone = parseInt(newA1);
+	var newAtwo = parseInt(newA2);
+	var sum = newAone + newAtwo
+	alert(newA1 + newA2);    //35241233
+	alert(sum);    //4757
+	var res = sum.toString()  //4757
+	var sum1 = res.split('');   //4,7,5,7
+	var sum2 = sum1.reverse();
+	console.log(sum2);     //7,5,7,4
+
+	
+	var a = 4757;
+	var res = a.toString();   
+	alert(res);  //4757
+	var sum = res.split('');
+	alert(sum); //4,7,5,7
+	
+	???function addTwoNums(I1,I2){
+		var result;
+		var cache = [];
+		var flag = 0;
+		while(I1,I2){
+			var sum = (I1 ? I1.val : 0) + (I2 ? I2.val : 0) + flag;
+			if(sum > 9){
+				sum -= 10;
+				flag = 1;
+			}else{
+				flag = 0;
+			}
+			var list = new ListNode(sum);
+			if (cache[0]) {
+				cache[0].next = list;
+				cache[0] = list;
+			} else {
+				cache[0] = result = list;
+			}    
+			
+			l1 = l1 && l1.next;
+			l2 = l2 && l2.next;
+		}
+		
+		if (flag === 1) {
+			cache[0].next = new ListNode(1);
+		}
+	return result; 
+	}
+	alert(addTwoNums([3,5,2,4],[1,2,3,3]));
+	
+	
+	//15.回文数
+	function isPalindrome(num){
+		var a = num % 10;
+		var b = parseInt(num / 10) % 10;
+		var c = parseInt(num /100);
+		if( c == a ){
+			return true;
+		}else{
+			return false;
+		}
+	}
+	console.log(isPalindrome(121));   //true
+	
+	function isPalindrome(num){
+		if(num <= 10){
+			return false;
+		}
+		var newNumb = String(num);
+		var newArr = newNumb.split('');
+		for(var i = 0; i < newArr.length; i++){
+			while(newArr[0] != '-'){
+				if(newArr[0] == newArr[newArr.length - 1]){
+					return true;
+				}else{
+					return false;
+				}
+			}
+		}
+	}
+	console.log(isPalindrome(121));   //true
+	
+	
+	???function isPalindrome(num){
+		if (num < 0){
+			return false;
+		}
+		var i = 0;
+		}
+		while(num > 0){
+			var left = num[0];
+			var right = num % 10;
+			if(left == right){
+				return true;
+			}else{
+				return false;
+			}
+			num = (num % div) / 10;
+			div /= 100;
+		}
+		return true;
+	}
+	console.log(isPalindrome(9)); 
+	*/
+/*
+	???function isPalindrome(x){
+		var temp = x;
+		if(x < 0){
+			return false;
+		}else{
+			var i = 0;
+			while(x != 0){
+				if(i * 10/10 != i){
+					i = 0;
+					break;
+				}
+				i = i * 10 + x % 10;
+				x = x / 10;
+			}
+			if(i == temp){
+				return true;
+			}
+			return false
+		}
+	}
+	console.log(isPalindrome(122)); 
+	
+	
+	//16. 存在重复元素
+	function containsDuplicate(nums){
+		for(var i = 0; i < nums.length; i++){
+			for(var j = i + 1; j < nums.length; j++){
+				if(nums[i] == nums[j]){
+					return true;
+				}
+			}
+		}
+		return false;
+	}
+	console.log(containsDuplicate([1,2,3,1]));  //true
+	
+	function containsDuplicate(nums){
+		for(var i = 0; i < nums.length; i++){
+			for(var j = 0; j < nums.length; j++){
+				if(nums[i] == nums[j] && i != j){
+					return true;
+				}
+			} 
+		}
+		return false;
+	}
+	console.log(containsDuplicate([1,2,3,1]));   //true
+	
+	可用桶，计数方法？
+	
+	
+	//17.反转链表   ???
+	function reverseList(head){
+		var prev = null;
+		var curr = head;
+		while(curr){
+			const next = curr.next;
+			curr.next = prev;
+			prev = curr;
+			curr = next;
+		}
+		return prev;
+	}
+	console.log(reverseList([1,2,3,4,null]));
+	
+	function reverseList(head){
+		if (head == null || head.next == null) {
+        return head;
+		}
+		const newHead = reverseList(head.next);
+		head.next.next = head;
+		head.next = null;
+	return newHead;
+	}
+	console.log(reverseList([1-2-3-4-null]));
+	
+	
+	//18.有效的字母异位词
+	
+	function isAnagram(s,t){
+		return s.length == t.length && [...s].sort().join('') === [...t].sort().join('');
+	}
+	console.log(isAnagram("anagram","nagaram"));
+	
+	function isAnagram(s,t){
+		if(s.length != t.length){
+			return false;
+		}
+		var newS = s.split('');
+		var newS1 = newS.sort().join('');
+		var newT = t.split('');
+		var newT1 = newT.sort().join('');
+		if(newS1 === newT1){
+			return true;
+		}else{
+			return false;
+		}
+	}
+	console.log(isAnagram("anagram","nagaram")); //true
+	*/
+	/*
+	// 哈希表
+	function isAnagram(s,t){
+		if(s.length != t.length){
+			return false;
+		}
+		const table = new Array(26).fill(0);
+		for(let i = 0; i < s.length; i++){
+			table[s.codePointAt(i) - 'a'.codePointAt(0)]--;
+			if(table[t.codePointAt(i)] - 'a'.codePointAt(0) < 0){
+				return false;
+			}
+		}
+		return true;
+	}
+	console.log(isAnagram("anagram","nagaram"));
+	
+	//charAt() 方法可返回指定位置的字符。
+	var s = "hello";
+	console.log(s.charAt(1)); //e
+	//charCodeAt()方法返回前两个字节和后两个字节的Unicode值。
+	var s = "hello";
+	console.log(s.charCodeAt(1));  //101
+	// codePointAt（）方法，能够正确处理 4 个字节储存的字符，返回一个字符的码点
+	var s = "hello";
+	console.log(s.codePointAt(1));   //101
+	
+	
+	//1. push-pop 先进后出  栈
+	var stand = ['a','b','c'];
+	var newStand = stand.push(123);
+	console.log(newStand);   //4   长度
+	console.log(stand);      // 'a','b','c',123
+	var newStand1 = stand.pop();
+	console.log(newStand1)   //123   最后一个元素
+	console.log(stand);    //'a','b','c'
+	//2. push-shift 先进先出  队列
+	var level = [1,2,3];
+	var newLevel = level.push('abc');
+	console.log(newLevel);    //4     长度
+	console.log(level);       //1,2,3,'abc'
+	var newLevel1 = level.shift();
+	console.log(newLevel1)   //1    第一个元素
+	console.log(level);     //2,3,4,'abc'
+	
+	
+	//19.缺失数字
+	
+	function missingNumber(nums){
+		var nums = nums.sort(function(value1,value2){
+			return  value1 - value2;
+		});
+		console.log(nums);
+		// 判断 n 是否出现在末位
+        if (nums[nums.length-1] != nums.length) {
+            return nums.length;
+        }
+        // 判断 0 是否出现在首位
+        else if (nums[0] != 0) {
+            return 0;
+        }
+        // 此时缺失的数字一定在 (0, n) 中
+        for (var i = 1; i < nums.length; i++) {
+            var expectedNum = nums[i-1] + 1;
+            if (nums[i] != expectedNum) {
+                return expectedNum;
+            }
+        }
+        // 未缺失任何数字（保证函数有返回值）
+        return -1;
+	}
+	console.log(missingNumber([45,35,38,13,12,23,48,15,44,21,43,26,6,37,1,19,22,3,11,32,4,16,28,49,29,36,33,8,9,39,46,17,41,7,2,5,27,20,40,34,30,25,47,0,31,42,24,10,14]));    //18
+	*/
+	/**/
+	function missingNumber(nums){
+		var sum = 0;
+        for (var i = 1; i <= nums.length; i++) {
+            sum += i;
+            sum -= nums[i - 1];
+        }
+        return sum;
+	}
+	console.log(missingNumber([3,0,1]));
+	
+	
+	function missingNumber(nums){
+		var nums = nums.sort();  //个位数没问题
+        for (var i = 0; i < nums.length; i++) {
+            if (nums[i] != i){
+				return i;
+			}  
+        }
+        return nums.length;
+	}
+	console.log(missingNumber([3,0,1]));
+	
+	var num = [45,35,38,13,12,23,48,15,44,34,30,25,47,0,2,3,1,42,24,10,14]
+	var newNum = num.sort();
+	alert(newNum);   //0,1,10,12,13,14,15,2,23,24,25,3,30,34,35,38,42,44,45,47,48
+	
+	
+	//20.单词规律
+	
+	var wordPattern = function(pattern, s) {
+		const word2ch = new Map();
+		const ch2word = new Map();
+		const words = s.split(' ');
+		if (pattern.length !== words.length) {
+			return false;
+		}
+		for (const [i, word] of words.entries()) {  //for(var i = 0; i < words.length;i++)
+			const ch = pattern[i];
+			if (word2ch.has(word) && word2ch.get(word) != ch || ch2word.has(ch) && ch2word.get(ch) !== word) {
+				return false;
+			}
+			word2ch.set(word, ch);
+			ch2word.set(ch, word);
+		}
+		return true;
+	};
+	console.log(wordPattern('abba','dog cat cat dog')); //true
+	
+	
+	
+	</script>
+</head>
+<body>; 
+	 
+</body>
+<html>
