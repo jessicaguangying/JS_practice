@@ -58,7 +58,7 @@
 	var nums = [2,4,5,8,9];
 	var target = 10;
 	alert(twoSum(nums,target));   //0,3
-	*//*
+	
 	function twoSum(nums,target){
 		var d = {};
 		for(var i = 0; i < nums.length; i++){
@@ -78,6 +78,7 @@
 	
 	var reverse = function(x){
 		var x = x.toString();
+		console.log(x);  //123
 		var arr = x.split("");
 		if(arr[0] != '-'){
 			var y = Number(arr.reverse().join(''));
@@ -99,6 +100,28 @@
 	var x = [123];
 	alert(reverse(x));  //321
 	
+	*//*
+		var x = [123];
+		//var x = x.toString();
+		//console.log(x);  //123
+		//var y = x.toString(2);
+		//console.log(y);  //123
+		//var y = x.toString("2");
+		//console.log(y); //123
+		//var x = 123;
+		//var y = x.toString("2");
+		//console.log(y); //1111011
+		//var x = 123;
+		//var y = x.toString(2);
+		//console.log(y); //1111011
+	
+		//var x = "123";
+		//var y = x.toString(2);
+		//console.log(y); //123
+		//var y = x.toString();
+		//console.log(y); //123
+		var num = Math.pow(2,3);
+		console.log(num); //8   2的3次方
 	
 	var reverse = function(x){
 		var x = x.toString();
@@ -140,6 +163,22 @@
 	alert(removeDuplicates(nums));    
 	
 	
+	var removeDuplicates = function(nums){
+		var newNum = nums.sort();
+		console.log(newNum);
+		for(i = 0; i < newNum.length; i++){
+			if(newNum[i] == newNum[i + 1]){
+				newNum.splice(i,1);  
+			}
+		}
+		return newNum;
+	};
+	var nums = [1,2,1,4];
+	console.log(removeDuplicates(nums));     //1,2,4
+	
+	var arr = [3,1,2];
+	var newArr = arr.sort();
+	alert(newArr);
 	
 	
 	//4.只出现一次的元素
@@ -180,10 +219,11 @@
 	}
 	var nums = [1,2,4,1,2];
 	alert(singleNumer(nums)); 
-	
+	*//*
 	var arr = [1,2,4,1,2,7];
-	//alert(arr.indexOf(arr[0]));     //0,1,2,0,1,
-	//alert(arr.lastIndexOf(arr[0])); //3,4,2,3,4,
+	console.log(arr.indexOf(arr[0]));     //0   //0,1,2,0,1,5
+	console.log(arr.lastIndexOf(arr[0])); //3   //3,4,2,3,4,5
+	
 	
 	alert(0^arr[0])  //1    0 1  +
 	alert(1^arr[1]) //3     1 2  +
@@ -265,6 +305,24 @@
 		return digits;
 	}
 	console.log(lastAdd1([4,3,2,5]));     //4,3,2,6
+	
+	var arr = [3,4,2,5,8]
+	var newArr = arr[2];
+	console.log(newArr);  //2
+	console.log(newArr++);  //2
+	console.log(newArr--);  //3
+	console.log(++newArr); //3
+	console.log(--newArr);  //2
+	
+	var arr = [3,4,2,5,8]
+	for(var i = 0; i < arr.length; i++){
+		var newArr = arr[2];
+		console.log(newArr);  //2
+		console.log(newArr++);  //2
+		console.log(newArr--);  //3
+		console.log(++newArr);  //3
+		console.log(--newArr);  //2
+	}
 	*/
 	/*
 	//7.各位相加    
@@ -324,7 +382,7 @@
 		if(num % 9 == 0){
 			return 9;
 		}else{
-			return num % 9;
+			return num % 9;  //小数点后1位
 		}
 	}
 	console.log(addDigits(43));
@@ -555,6 +613,7 @@
 	};
 	console.log(addBinary(11,1));
 	
+	
 	//13.罗马数字转整数
 	
 	function romanTOInt(s){
@@ -597,7 +656,7 @@
 					}else{
 						res += 100;
 					}
-					flag = 0;
+					flag = 3;
 					break;	
 				case 'D':
 					if(flag == 3){
@@ -619,7 +678,8 @@
 		}
 		return res;
 	}
-	console.log(romanTOInt('IVM')); //1004
+	console.log(romanTOInt('ICM')); //901
+	
 	
 	
 	function romanToInt(s){
@@ -659,8 +719,8 @@
 	var b = [1,2,3,3];
 	var newA1 = a.join('');
 	var newA2 = b.join('');
-	var newAone = parseInt(newA1);
-	var newAtwo = parseInt(newA2);
+	var newAone = parseInt(newA1);   //   parseInt()	解析一个字符串并返回一个整数。
+	var newAtwo = parseInt(newA2);  //
 	var sum = newAone + newAtwo
 	alert(newA1 + newA2);    //35241233
 	alert(sum);    //4757
@@ -671,10 +731,25 @@
 
 	
 	var a = 4757;
-	var res = a.toString();   
+	var res = a.toString();    //整数返回字符
 	alert(res);  //4757
 	var sum = res.split('');
 	alert(sum); //4,7,5,7
+	
+	var a = 4757;
+	var sum = a.split("");   //错误，因为整数不能分开
+	alert(sum);
+	
+	var str = "4757";
+	var sum = str.split('');   
+	alert(sum);    //4,7,5,7
+	
+	var str = [4,757];
+	var sum = str.join('');   
+	alert(sum);  //4757
+	*/
+	
+	/*
 	
 	???function addTwoNums(I1,I2){
 		var result;
@@ -935,7 +1010,7 @@
 	}
 	console.log(missingNumber([45,35,38,13,12,23,48,15,44,21,43,26,6,37,1,19,22,3,11,32,4,16,28,49,29,36,33,8,9,39,46,17,41,7,2,5,27,20,40,34,30,25,47,0,31,42,24,10,14]));    //18
 	*/
-	/**/
+	/*
 	function missingNumber(nums){
 		var sum = 0;
         for (var i = 1; i <= nums.length; i++) {
@@ -984,7 +1059,7 @@
 	};
 	console.log(wordPattern('abba','dog cat cat dog')); //true
 	
-	
+	*/
 	
 	</script>
 </head>
