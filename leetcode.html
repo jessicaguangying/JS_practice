@@ -1263,7 +1263,7 @@
 	var nums = [210,7,32];
 	console.log(largestNumber(nums));
 	
-	*/
+	*//*
 	//26.快乐数   ???无JS解法
 	function isHappy(n){
 		var sum = [];
@@ -1275,7 +1275,7 @@
 	var n = 34;
 	console.log(isHappy(n));
 	
-	/*
+	
 	var  n = 1345;
 	var num = n.toString();
 	var sum = 0
@@ -1283,7 +1283,350 @@
 			sum += (num[i] * num[i])
 			console.log(sum)    //1,10,26,51
 		}
-	*/	
+		
+	
+	//27.寻找两个正序数组的中位数
+	
+	function resultMiddle(result){
+		var middle = result.length % 2
+		var middleIndex = parseInt(result.length / 2);
+		if(middle == 0){
+			return (result[middleIndex] + result[middleIndex - 1]) / 2;
+		}
+		if(middle != 0){
+			return (result[middleIndex]);
+		}
+	}
+	
+	function findMedianSorteArrays(num1,num2){
+		var left = num1;
+		var right = num2;
+		var result = [];
+		while(left.length && right.length){
+			if(left[0] < right[0]){
+				result.push(left.shift());
+			}else{
+				result.push(right.shift());
+			}
+		}
+		while(left.length){
+			result.push(left.shift());
+		}
+		while(right.length){
+			result.push(right.shift());
+		}
+		return resultMiddle(result);      //result  1,2,3,4,6,7  
+	}
+	var num1 = [1,3,6]
+	var num2 = [2,4,7]
+	console.log(findMedianSorteArrays(num1,num2));  //3.5
+	
+	//var num = 9;
+	//console.log(num % 3);   //0
+	//console.log(parseInt(num / 2));  //4
+	
+	
+	//28. 电话号码的字母组合   ??? 不对
+	function letterCombinations(digits){
+		var 2 = [a,b,c];
+		var 3 = [d,e,f];
+		var 4 = [g,h,i];
+		var 5 = [j,k,l];
+		var 6 = [m,n,o];
+		var 7 = [p,q,r,s];
+		var 8 = [t,u,v];
+		var 9 = [w,x,y,z];
+		var newDigits = digits.split(",");
+		if(newDigits.length == 0){
+			return digits;
+		}
+		if(newDigits.length >= 1){
+			var result = [];
+			for(var i = 0; i <= newDigits.length;i++){
+				for(var j = 0; j <= newDigits.length;j++ ){
+					result.push(newDigits[i] * newDigits[j])
+				}
+			}
+		}
+		return result;
+	}
+	var digits = [23];
+	console.log(letterCombinations(digits));
+
+	
+	//29. 搜索插入位置
+	
+	function searchInsert(nums,target){
+		for(var i = nums.length - 1; i >= 0;i--){
+			if(nums[i] == target){
+				return i;
+			}
+			if(nums[i] != target){
+				if(target < nums[i]){   //target > nums[i]  return i + 1;
+					return i;
+				}
+			}
+		}
+	}
+	var nums = [1,2,5,7,9];
+	var target = [8];     //7 是3， 8是4
+	console.log(searchInsert(nums,target));
+	
+	var searchInsert = function(nums, target){
+		const n = nums.length;
+		let left = 0, right = n;
+		while(left < right){
+			let mid = left + right / 2;
+			if(nums[mid] >= target){
+				right = mid;
+			}else{
+				left = mid + 1;
+			}
+		}
+		return left;
+	};
+	var nums = [1,2,5,7,9];
+	var target = [8];     //????  7
+	console.log(searchInsert(nums,target));
+	
+	var searchInsert = function(nums, target){
+		const n = nums.length;
+		let left = 0, right = n - 1;
+		while(left <= right){
+			let mid = left + (right - 1) / 2;
+			if(nums[mid] < target){
+				left = mid + 1;
+			}else{
+				left = mid - 1;
+			}
+		}
+		return left;
+	};
+	var nums = [1,2,5,7,9];
+	var target = [8];     //????  4.5
+	console.log(searchInsert(nums,target));
+	
+	var searchInsert = function(nums, target){
+		const n = nums.length;
+		let left = 0, right = n - 1, ans = n;
+		while (left <= right) {
+			let mid = ((right - left) >> 1) + left;
+			if (target <= nums[mid]) {
+				ans = mid;
+				right = mid - 1;
+			} else {
+				left = mid + 1;
+			}
+		}
+		return ans;
+	};
+	var nums = [1,2,5,7,9];
+	var target = [8];     //  4
+	console.log(searchInsert(nums,target));
+	
+	//30. 搜索插入位置
+	
+	function isSameTree(p,q){
+        if (p == null && q == null){
+            return true;
+        } else if (p == null || q == null){
+            return false;
+        } else if (p.val != q.val){
+            return false;
+        } else {
+            return isSameTree(p.left, q.left) && isSameTree(p.right, q.right);
+        }
+    }
+	var p = [1,2,3];
+	var q = [1,2,3];
+	console.log(isSameTree(p,q));   //ture
+	
+	//31. 计数质数
+
+	//32. 丑数    丑数 就是只包含质因数 2、3 和/或 5 的正整数。
+	function isUgly(n){
+		if(n == 1 || n == 2 || n == 3 || n == 5){
+			return true;
+		}
+		if(n <= 0){
+			return false;
+		}
+		var newN = n / 2;
+		var newN2 = n / 3;
+		var newN3 = n / 7;
+		while(n >= 2){
+			if(n % 2 == 0 && newN % 2 == 0 || n % 5 == 0){
+				return true;
+			}else if(n % 2 == 0 && n % 3 == 0 || n % 5 == 0){
+				return true;
+			}else if(n % 3 == 0 && newN2 % 3 == 0 || n % 5 == 0){
+				return true;
+			}else if(n % 2 == 0 &&  n % 5 == 0){
+				return true;
+			}else if(n % 3 == 0 &&  n % 5 == 0){
+				return true;
+			}else if(n % 7 == 0 ||  newN3 % 7 == 0){   //质数
+				return false;
+			}else{
+				return false;
+			}
+		}
+	}
+	var n = 14;
+	console.log(isUgly(n));    
+		
+		
+	function isUgly(n){
+		if (n <= 0) {
+        return false;
+    }
+    var factors = [2, 3, 5];
+    for (var factor of factors) {    //number of factors  for循环的of   2,3,5
+        while (n % factor === 0) {
+            n /= factor;
+        }
+    }
+    return n == 1;
+	}
+	var n = 3;
+	console.log(isUgly(n)); 
+
+
+	//33.有效的字母异位词
+	function isAnagram(s,t){
+		var newS = s.split("");
+		var newT = t.split("");
+		console.log(newT);   // ["n", "a", "g", "a", "r", "a", "s"]
+		var newSort = newS.sort();
+		var newTort = newT.sort();
+		console.log(newTort);     // ["a", "a", "a", "g", "n", "r", "s"]
+		if(newSort.length != newTort.length){
+			return false;
+		}
+		var result = [];
+		if(newSort.length == newTort.length){
+			var newSjoin = newSort.join("");
+			var newTjoin = newTort.join("");
+			if(newSjoin === newTjoin){
+				return true;
+			}else{
+				return false;
+			}
+		}
+	}
+	var s = "anagram";
+	var t = "nagaras";
+	console.log(isAnagram(s,t));  //false    
+	
+	*/
+	/*
+	var s = "anagram word";
+	var newS = s.split("");  ["a", "n", "a", "g", "r", "a", "m", " ", "w", "o", "r", "d"]
+	var newS1 = s.split(" ")   ["anagram", "word"]
+	console.log(newS)
+	console.log(newS1)
+	
+	
+	var isAnagram = function(s, t) {
+			return s.length == t.length && [...s].sort().join('') === [...t].sort().join('')
+		};
+		var s = "anagram";
+		var t = "nagara";
+		console.log(isAnagram(s,t));   //false
+		
+	var isAnagram = function(s, t) {
+		if (s.length !== t.length) {
+			return false;
+		}
+		const table = new Array(26).fill(0);
+		for (let i = 0; i < s.length; ++i) {
+			table[s.codePointAt(i) - 'a'.codePointAt(0)]++;
+		}
+		for (let i = 0; i < t.length; ++i) {
+			table[t.codePointAt(i) - 'a'.codePointAt(0)]--;
+			if (table[t.codePointAt(i) - 'a'.codePointAt(0)] < 0) {
+				return false;
+			}
+		}
+		return true;
+	};
+
+	var s = "anagram";
+	var t = "nagaras";
+	console.log(isAnagram(s,t));   //false;
+   
+	
+	var isAnagram = function(s, t) {      //此法不可用
+		sort(s.begin(),s.end());
+		sort(t.begin(),t.end());
+		return s == t;
+	};
+	var s = "anagram";
+	var t = "nagaras";
+	console.log(isAnagram(s,t));
+	
+	 
+	 //34.3的幂
+	 function isPowerOfThree(n){
+		if(n < 1){
+            return false
+		}
+        while(n % 3 == 0){
+            n /= 3;
+        }
+		return n == 1;
+	 }
+	 var n = 9;
+	 console.log(isPowerOfThree(n));  //true
+	
+	//35.4的幂
+	 function isPowerOfFour(n){
+		if(n < 1){
+            return false
+		}
+        while(n % 4 == 0){
+            n /= 4;
+        }
+		return n == 1;
+	 }
+	 var n = 16;
+	 console.log(isPowerOfFour(n));
+	 */
+	 //36.  找不同    ///错误
+	 var findTheDifference = function(s, t) {
+		const cnt = new Array(26).fill(0);
+		for (const ch of s) {
+			cnt[ch.charCodeAt() - 'a'.charCodeAt()]++;
+		}
+		for (const ch of t) {
+			cnt[ch.charCodeAt() - 'a'.charCodeAt()]--;
+			if (cnt[ch.charCodeAt() - 'a'.charCodeAt()] < 0) {
+				return ch;
+			}
+		}
+		return ' ';
+	};
+	var s = "anagram";
+	var t = "anagrm";
+	console.log(findTheDifference(s,t))
+
+/*
+	 var findTheDifference = function(s, t) {
+		let as = 0, at = 0;
+		for (let i = 0; i < s.length; i++) {
+			as += s[i].charCodeAt();
+		}
+		for (let i = 0; i < t.length; i++) {
+			at += t[i].charCodeAt();
+		}
+		return String.fromCharCode(at - as);
+	};
+	var s = "rnagram";
+	var t = "nagram";
+	console.log(findTheDifference(s,t))
+	
+*/
+
 	
 	</script>
 </head>
