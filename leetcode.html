@@ -1933,7 +1933,102 @@
 	};
 	var num = 5;
 	console.log(arrangeCoins(num)); 
-*/
+
+
+//43. 密钥格式化
+	function licenseKeyFormatting(S,K){
+		S = S.toLocaleUpperCase().replace(/[-]/g,"");
+		var result = [];
+		while(S.length){
+			if(S.length > K){
+				result.unshift(S.slice(-K));
+				console.log(result);  //2E9W
+				S = S.slice(0,S.length - K);
+				console.log(S);  // 5F3Z
+			}else{
+				result.unshift(S);
+				S = '';
+			}
+		}
+		return result.join("-");
+	} 
+	var S =  "5F3Z-2e-9-w";
+	var K = 4;
+	console.log(licenseKeyFormatting(S,K));//5F3Z-2E9W  */
+/*
+    var S = "5F3Z-2e-9-w";
+	var newS = S.toLocaleUpperCase();
+	console.log(newS);  // 5F3Z-2E-9-W 
+	var newR = newS.replace(/[-]/g,"");
+    console.log(newR);   // 5F3Z2E9W
+	var newRsult = newR.slice(0,3);
+	console.log(newRsult);    //5F3
+	var newS = (newR.slice(-5));
+	console.log(newS);  //Z2E9W
+	var result = [];
+	result.unshift(newR.slice(-4));
+	console.log(result)  //2E9W 
+	
+	function licenseKeyFormatting(S,K){
+		S = S.toLocaleUpperCase().replace(/[-]/g,"");
+		var result = [];
+		while(S.length){
+			if(S.length > K){
+				result.unshift(S.slice(-K));
+				console.log(result);  //2E9W
+				S = S.slice(0,S.length - K);
+				console.log(S);  // 5F3Z
+			}else{
+				result.unshift(S);
+				S = '';
+			}
+		}
+		return result.join("-");
+	} 
+	var S =  "5F3Z--w";
+	var K = 4;
+	console.log(licenseKeyFormatting(S,K));//5-F3ZW 
+
+// 44.最大连续 1 的个数
+	function findMaxConsecutiveOnes(nums){
+		var numsT = nums.toString("2");
+		var result = 0;
+		for(var i = 0; i < numsT.length; i++){
+			if(numsT[i] == 1){
+				result += 1;
+			}else{
+				return result;
+			}
+		}
+		return result;
+	}
+	var nums = 6;
+	console.log(findMaxConsecutiveOnes(nums));
+
+    var nums = 6;
+	var numsT = nums.toString("2");
+	console.log(numsT);  //110
+	*/
+	
+	var findMaxConsecutiveOnes = function(nums) {
+    let maxCount = 0, count = 0;
+    const n = nums.length;
+    for (let i = 0; i < n; i++) {
+        if (nums[i] === 1) {
+            count++;
+        } else {
+            maxCount = Math.max(maxCount, count);
+            count = 0;
+        }
+    }
+    maxCount = Math.max(maxCount, count);
+    return maxCount;
+	};
+	var nums = [1,1,0,0,1,1,1,1];
+	console.log(findMaxConsecutiveOnes(nums));
+
+	
+	
 	
 	</script>
 </head>
