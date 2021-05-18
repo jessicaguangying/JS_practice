@@ -2008,7 +2008,7 @@
     var nums = 6;
 	var numsT = nums.toString("2");
 	console.log(numsT);  //110
-	*/
+	
 	
 	var findMaxConsecutiveOnes = function(nums) {
     let maxCount = 0, count = 0;
@@ -2025,11 +2025,367 @@
     return maxCount;
 	};
 	var nums = [1,1,0,0,1,1,1,1];
-	console.log(findMaxConsecutiveOnes(nums));
+	console.log(findMaxConsecutiveOnes(nums));   //4
+ 
+// 45.七进制数
+	function converToBase7(num){
+		var newNum = num.toString("7")
+		return newNum;
+	}
+	var num = -100;
+	console.log(converToBase7(num));  //202*/
+/*
+	var convertToBase7 = function(num) {
+		let next = Math.abs(num)
+		let res = ''
+		while(next >= 7){
+		res =  next % 7 + res
+		next = next / 7 | 0
+		 }
+		 res = next + res
+		 return num < 0 ? '-' + res : res
+	};
+	var num = -7;
+	console.log(convertToBase7(num));  //-10
 
+	//46.检测大写字母
+	function detectCapitalUse(word){
+		var re = /(^[A-Z]*$)|(^[a-z]+$)|(^[A-Z]?[a-z]*$)/;
+		return re.test(word);
+	}
+	var word = "UsA";
+	console.log(detectCapitalUse(word));     //false
+
+	var detectCapitalUse = function (word) {
+		var num = 0, i = 0;
+		while (i < word.length) {
+			if (/[A-Z]/.test(word.charAt(i))) {   //test 是否匹配，charAt 指定位置的字符
+				num++;
+			}
+			i++;
+		}
+
+		if (num === word.length || num === 0 || num === 1 && (/[A-Z]/.test(word.charAt(0)))) {
+			return true;
+		}
+		return false;
+	};
+	var word = "usa";
+	console.log(detectCapitalUse(word));
+*/
+
+/*	
+	var detectCapitalUse = function (word) {   //有点问题，如后面有大写也显示ture
+		for(var i = 0; i < word.length; i++){
+			if (/[A-Z]/.test(word.charAt(i))){
+				return true;
+			}
+			if (/[a - z]/.test(word.charAt(i))){
+				return true;
+			}
+			if (word.length > 2 && (/[A-Z]/.test(word.charAt(0)))) {
+			return true;
+			}
+		}
+		return false;
+	};
+	var word = "UsA";
+	console.log(detectCapitalUse(word));  //true
+
+
+//47.相对名次
+	function findRelativeRanks(score){  //有点问题
+		var newScore = score.sort();
+		result = [];
+		for(var i = 0; i < newScore.length;i++){
+			if(newScore[i] === 1){
+				result.push("Gold Medal");
+			}else if(newScore[i] === 2){
+				result.push("Silver Medal");
+			}else if(newScore[i] === 3){
+				result.push ("Bronze Medal");
+			}else{
+				result.push("" + newScore[i] + "")
+			}
+		}
+		return result;
+	}
+	var score = [3,5,1,2,4,7,9];
+	console.log(findRelativeRanks(score));  ["Gold Medal", "Silver Medal", "Bronze Medal", "4", "5", "7", "9"]
+	
+	function findRelativeRanks(score){
+		var newScore = score.sort();
+		result = [];
+		for(var i = 0; i < newScore.length;i++){
+			if(i == 0){
+				result.push("Gold Medal");
+			}else if(i == 1){
+				result.push("Silver Medal");
+			}else if(i == 2){
+				result.push ("Bronze Medal");
+			}
+			if(i > 2){
+				result.push(i + 1);
+			}
+		}
+		return result;
+	}
+	var score = [3,5,4,7,9];         //["Gold Medal","Silver Medal","Bronze Medal",4,5]  //4,5没有“”
+	console.log(findRelativeRanks(score)); 
+	
+	*/
+	/*
+	var findRelativeRanks = function(nums) {
+    	const arr = nums.map(key => {return key});
+	    const sortArr = arr.sort((a,b) => {return b - a});
+		const goldMap = {};
+	    sortArr.map((key, index) => {
+	    	if(index === 0){
+	    		goldMap[key] = "Gold Medal";
+	    	}
+	    	if(index == 1){
+	    		goldMap[key] = "Silver Medal";
+	    	}
+	    	if(index == 2){
+	    		goldMap[key] = "Bronze Medal";
+	    	}
+	    	if (index > 2){
+	    		goldMap[key] = index + 1;
+	    	}
+	    });
+	    const resArr = nums.map(key => {
+	        return (
+	            goldMap[key] + ""
+	        )
+	    });
+	    return resArr;
+	};
+	var score = [3,5,1,2,4,7,9];
+	console.log(findRelativeRanks(score)); 
+
+
+//48.两数相加    
+	function addTwoNums(I1,I2){
+		var newI1 = I1.join("");
+		var newJ1 = Number(newI1);  //转数字
+			console.log(newJ1);   //243
+		var newI2 = I2.join("")
+		var newJ2 = Number(newI2);
+			console.log(newI2);   //564
+		var result = newJ1 + newJ2;
+			console.log(result);    //807
+		var newR = result.toString();  //变字符
+		var newJ = newR.split("");  
+			console.log(newJ);
+		var newResult = newJ.reverse("");
+			console.log(newResult);
+		return newResult;	
+	}
+	var I1 = [9,9,9,9,9,9,9];
+	var I2 = [9,9,9,9];
+	console.log(addTwoNums(I1,I2));   //[8,9,9,9,0,0,0,1]
 	
 	
+	var addTwoNumbers = function(l1, l2) {
+		let head = null, tail = null;
+		let carry = 0;
+		while (l1 || l2) {
+			const n1 = l1 ? l1.val : 0;
+			const n2 = l2 ? l2.val : 0;
+			const sum = n1 + n2 + carry;
+			if (!head) {
+				head = tail = new ListNode(sum % 10);
+			} else {
+				tail.next = new ListNode(sum % 10);
+				tail = tail.next;
+			}
+			carry = Math.floor(sum / 10);
+			if (l1) {
+				l1 = l1.next;
+			}
+			if (l2) {
+				l2 = l2.next;
+			}
+		}
+		if (carry > 0) {
+			tail.next = new ListNode(carry);   //listNode不能被定义
+		}
+		return head;
+	};
+	var I1 = [9,9,9,9,9,9,9];
+	var I2 = [9,9,9,9];
+	console.log(addTwoNumbers(I1,I2)); 
+
+	//49.三数之和
 	
+	function threeSum(nums){  //有问题
+		var len = nums.length;
+		var result = [];
+		for(var i = 0; i < len; i++){
+			for(var j = i + 1; j < len; j++){
+				for(var k = j + 1; k < len; k++){
+					if(nums[i] + nums[j] + nums[k] == 0){
+						result.push(nums[i],nums[j],nums[k], + "<br/>");
+					}
+				}
+			}
+		}
+		return result;
+	}
+	var nums = [-1,0,1,2,-1,-4];     //[-1, 0, 1, -1, 2, -1, 0, 1, -1]
+	console.log(threeSum(nums));
+	
+	var threeSum = function(nums) {
+	if(nums.length<3) return [];  // 数组小于三个元素，不符合题意
+    
+    let len = nums.length;
+    nums.sort((a, b) => a - b);  // 按数字大小排序便于剪枝
+			
+	let result = [];
+    let left;  // 左指针
+    let right;  // 右指针
+    let count;
+	for(let i=0;i<len-2;i++) {
+        if(nums[i]==nums[i-1]) continue;  // 去重剪枝
+        if(nums[i]+nums[i+1]+nums[i+2]>0) break;  // 若连续三个最小的数之和都大于0，后面不可能有解
+        if(nums[i]+nums[len-2]+nums[len-1]<0) continue; // 若nums[i]加最大两个数都小于0，则nums[i]无解
+        left = i+1;
+        right = len-1;
+        while(left<right){
+            count = nums[i]+nums[left]+nums[right];
+            if(count<0) left++;  // 如果和小于0，左指针右移
+            else if (count>0) right--;  // 如果和大于0，右指针左移
+            else {
+                result.push([nums[i], nums[left], nums[right]]);
+
+                // 去重剪枝
+                while(left<right && nums[left]==nums[left+1]) left++;
+                while(left<right && nums[right]==nums[right-1]) right--;
+
+                left++;
+                right--;  // 求出正确解之后应该同时移动左、右指针
+                // 这是因为a+b+c=0，若a,b不变，则c也不会变，但题目要求不能有重复解，所以左右指针都要移动
+            }
+        }
+	}
+	return result;
+};
+	var threeSum = function (nums) {
+  // 所有符合条件的数组都将放入这数组中
+  let lists = [];
+  
+  // 对原数组进行排序 sort方法会改变原来数组
+  nums.sort((a, b) => {
+    return a - b
+  })
+
+  let len = nums.length;
+
+  for (let i = 0; i < len; i++) {
+    // 循环数组，对每一个元素作为基准向后查找，如果循环到某一个元素为正数，因为数组已经排序，以此为基准向后查找
+    // 的所有的数也必然为正数，此时返回结果即可
+    if (nums[i] > 0) {
+      return lists
+    }
+    // 数组中会出现相同数字，需要去除重复解。直接跳过后一个元素
+    // 想清楚一个问题 为什么 if的条件中 i 要大于零 
+    // 因为第一个元素无论如何都不会重复，所以从第二个元素开始才需要和前一个元素是比较是否相同
+    if (i > 0 && nums[i] === nums[i - 1]) {
+      continue
+    }
+    // 设置变量取出当前元素
+    let curr = nums[i]
+    let L = i + 1; // 三个数相加 L 代表的是第二个数，也就是左指针，是当前遍历到元素的下一位
+    let R = len - 1; // R 代表的是 第三个数, 也就是右指针，设置右指针指向数组的最后一个元素。
+    // 在这里L是严格小于R的，总共需要三个数 L和R 重合只能找到两个数
+    while (L < R) {
+      // 计算当前遍历到的 i L R 三个位置元素的总和大小
+      let temp = curr + nums[L] + nums[R];
+      if (temp === 0) { // 找到了一组符合题意的解
+        let list = [];
+        list.push(curr)
+        list.push(nums[L])
+        list.push(nums[R])
+        lists.push(list)
+        // 当 i 固定的时候，L也有可能重复 L后面一个元素也可能和L相同 这个时候就要跳过后面的重复元素
+        while (L < R && nums[L + 1] === nums[L]) {
+          L++ // 左指针向右移动一位
+        }
+        // 退出while循环之后 左指针所在的位置恰好在重复的最后一个位置，此时还需要向右移动一位才能找到
+        // 第一个和L不相同的元素
+        L++
+        // 右指针的移动去重策略类似
+        while (L < R && nums[R - 1] === nums[R]) {
+          R--
+        }
+        R--
+      } else if (temp < 0) { // 和小于零 说明左指针的数太小了
+        L++
+      } else { // 和大于零 说明右指针的数太小了
+        R--
+      }
+    }
+  }
+  // 写代码先写返回值
+  return lists;
+};
+
+
+//50.盛最多水的容器
+    function maxArea(height){
+		var max = height[0];
+		var newMax = 0;
+		var left = 0
+		for(var i = 0; i < height.length; i++){
+			if(max < height[i]){
+				max = height[i]
+			}
+		}
+		return max;
+	}
+	var height = [2,3,4,7,1]
+	console.log(maxArea(height));  //最大值7
+	
+	
+	//var heightMax = Math.max(2,3,4,7,1);
+	//console.log(heightMax);  //7
+	 
+	 
+	 function maxArea(height){
+		var l = 0, r = height.length - 1;
+        var res = 0;
+        while (l < r) {
+            res = height[l] < height[r] ?
+				Math.max(res,(r - l) * height[l++]) :
+				Math.max(res,(r - l) * height[r--])
+        }
+        return res;
+    }
+	var height = [2,3,4,7,1] 
+	console.log(maxArea(height));      //6
+	
+	
+	function maxArea(height){
+		var l = 0, r = height.length - 1;
+        var ans = 0;
+        while (l < r) {
+            var area = Math.min(height[l], height[r]) * (r - l);   //2,7, (2*3)
+            ans = Math.max(ans, area);
+            if (height[l] <= height[r]) {
+                ++l;
+            }
+            else {
+                --r;
+            }
+        }
+		return ans;
+    }
+	var height = [2,3,4,7,1] 
+	console.log(maxArea(height));   //6
+	 */
+	 
+	 
+	 
 	</script>
 </head>
 <body>
